@@ -1,0 +1,17 @@
+{
+  "name": "doctor-search-redux",
+  "description": "Epicodus Week 1 Independent Project",
+  "main": "index.js",
+  "authors": [
+    "Michael Andrade"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
