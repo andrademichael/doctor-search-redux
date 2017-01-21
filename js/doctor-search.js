@@ -1,7 +1,6 @@
 var apiKey = require('./../.env').apiKey;
 
-function Doctor() {
-}
+function Doctor() {}
 
 //getDoctors method returns an array of doctor objects
 Doctor.prototype.getDoctors = function(medicalIssue, displayFunction) {
