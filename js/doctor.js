@@ -1,7 +1,7 @@
 var apiKey = require('./../.env').apiKey;
 
 Doctor = function() {
-}
+};
 
 //getDoctors method returns an array of doctor objects
 Doctor.prototype.getDoctors = function(medicalIssue, displayFunction) {
@@ -9,13 +9,13 @@ Doctor.prototype.getDoctors = function(medicalIssue, displayFunction) {
 
   //success branch
   .then(function(result) {
-    console.log("Success Branch reached!")
+    console.log("Success Branch reached!");
     //parse result
     console.log(result);
     // var parsedResult = JSON.parse(result);
     console.log("API call returned: " + result);
     console.log("result data is: " + result.data);
-    console.log("result.data[0].profile.first_name is: " + result.data[0].profile.first_name)
+    console.log("result.data[0].profile.first_name is: " + result.data[0].profile.first_name);
     //populate doctors array by looping through result's data objects
     var doctors = [];
     result.data.forEach(function(doctor) {

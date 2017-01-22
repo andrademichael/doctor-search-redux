@@ -1,10 +1,14 @@
 var Doctor = require('./../js/doctor.js').doctorModule;
 
-var displayDoctors = function(results) {
-  results.forEach(result) {
-    $("#doctorsList").append("<li>" + results[i].profile.first_name + " " + results[i].profile.last_name + "<br>" + results[i].profile.bio + "<br>" + "Accepting new patients? " + "<strong>" + results[i].profile"</li>");
-  }
-};
+var displayDoctors = (function(results) {
+  results.forEach(function(result) {
+    $("#doctorsList").append("<li><em>" +  result.profile.first_name + " " + result.profile.last_name + ", " + "</em><br>" + result.profile.bio + "<br><p>Practices at: <strong>" +
+    result.practices.forEach(function(practice) {
+      $("#doctorsList").append("<p>" + practice.name + "</p>";
+    });
+    + "</strong>" + "</li><br>")
+  });
+});
 
 //event handlers
 $(function() {
