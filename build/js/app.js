@@ -5,7 +5,7 @@ exports.apiKey = "b13953cfc5de42562c6ba06c66e0cf34"
 var apiKey = require('./../.env').apiKey;
 
 Doctor = function() {
-}
+};
 
 //getDoctors method returns an array of doctor objects
 Doctor.prototype.getDoctors = function(medicalIssue, displayFunction) {
@@ -13,13 +13,13 @@ Doctor.prototype.getDoctors = function(medicalIssue, displayFunction) {
 
   //success branch
   .then(function(result) {
-    console.log("Success Branch reached!")
+    console.log("Success Branch reached!");
     //parse result
     console.log(result);
     // var parsedResult = JSON.parse(result);
     console.log("API call returned: " + result);
     console.log("result data is: " + result.data);
-    console.log("result.data[0].profile.first_name is: " + result.data[0].profile.first_name)
+    console.log("result.data[0].profile.first_name is: " + result.data[0].profile.first_name);
     //populate doctors array by looping through result's data objects
     var doctors = [];
     result.data.forEach(function(doctor) {
@@ -27,7 +27,7 @@ Doctor.prototype.getDoctors = function(medicalIssue, displayFunction) {
     });
     console.log("doctors contains: " + doctors);
     console.log("displayFunction is about to run");
-    displayFunction(doctors);
+    displayFunction(medicalIssue, doctors);
   })
 
   //failure branch
@@ -42,12 +42,23 @@ exports.doctorModule = Doctor;
 },{"./../.env":1}],3:[function(require,module,exports){
 var Doctor = require('./../js/doctor.js').doctorModule;
 
-var displayDoctors = function(results) {
-  for (var i = 0; i < results.length; i++) {
-    console.log("in the loop" + i);
-    $("#doctorsList").append("<li>" + results[i].profile.first_name + " " + results[i].profile.last_name + "<br>" + results[i].profile.bio + "</li>");
-  }
-};
+var displayDoctors = (function(specialty, results) {
+  specialty = specialty.charAt().toUpperCase() + specialty.slice(1);
+  $("#doctorsListHeader").prepend(specialty + " ");
+  results.forEach(function(result) {
+    var practices = "";
+    result.practices.forEach(function(practice) {
+      practices = practices + ("<p>" + practice.name + "</p>");
+    });
+    $("#doctorsList").append(
+      "<li><strong>" +  result.profile.first_name +
+      " " + result.profile.last_name + ", " +
+      "</strong><br>" + result.profile.bio +
+      "<br><p>Practices at: <strong>" +
+      practices + "</strong></li><br>"
+    );
+  });
+});
 
 //event handlers
 $(function() {

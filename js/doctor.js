@@ -9,26 +9,19 @@ Doctor.prototype.getDoctors = function(medicalIssue, displayFunction) {
 
   //success branch
   .then(function(result) {
-    console.log("Success Branch reached!");
     //parse result
-    console.log(result);
     // var parsedResult = JSON.parse(result);
-    console.log("API call returned: " + result);
-    console.log("result data is: " + result.data);
-    console.log("result.data[0].profile.first_name is: " + result.data[0].profile.first_name);
+ result.data[0].profile.first_name);
     //populate doctors array by looping through result's data objects
     var doctors = [];
     result.data.forEach(function(doctor) {
       doctors.push(doctor);
     });
-    console.log("doctors contains: " + doctors);
-    console.log("displayFunction is about to run");
-    displayFunction(doctors);
+    displayFunction(medicalIssue, doctors);
   })
 
   //failure branch
   .fail(function(error) {
-    console.log("Failure Branch Reached!");
     displayFunction(error.message);
   });
 };
