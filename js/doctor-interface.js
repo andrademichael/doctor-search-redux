@@ -1,9 +1,9 @@
-var Doctor = ('./../js/doctorSearch.js').doctorModule;
+var Doctor = require('./../js/doctor.js').doctorModule;
 
 var displayDoctors = function(results) {
-  for (var i = 0; i < results.length; i++) {
-    $("#doctorDisplay").push("<li>" + results[i] + "</li>");
-  }
+  results.forEach(result) {
+    $("#doctorsList").append("<li>" + results[i].profile.first_name + " " + results[i].profile.last_name + "<br>" + results[i].profile.bio + "<br>" + "Accepting new patients? " + "<strong>" + results[i].profile"</li>");
+  };
 };
 
 //event handlers
